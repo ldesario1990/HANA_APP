@@ -1,0 +1,27 @@
+ID: hana_app-mta
+_schema-version: '2.1'
+version: 1.0.0
+modules:
+  - name: ui
+    type: html5
+    path: ui
+    parameters:
+      disk-quota: 512M
+      memory: 256M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: uaa_Test-mta
+      - name: dest_Test-mta
+resources:
+  - name: uaa_Test-mta
+    parameters:
+      path: ./xs-security.json
+      service-plan: application
+      service: xsuaa
+    type: org.cloudfoundry.managed-service
+  - name: dest_Test-mta
+    parameters:
+      service-plan: lite
+      service: destination
+    type: org.cloudfoundry.managed-service
